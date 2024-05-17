@@ -7,8 +7,6 @@ DELIMITER="->"
 
 store_key_value_pair() {
     local kvp=$(echo "$1" | sed 's/^SET //')
-    # local key=$(echo "$kvp" | sed -r 's/(\w*) .*$/\1/')
-    # local value=$(echo "$kvp" | sed -r 's/\w* //')
     local key="${kvp%% *}"
     local value="${kvp#* }"
     
