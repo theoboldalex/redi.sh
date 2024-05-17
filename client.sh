@@ -23,9 +23,6 @@ PORT=$2
 
 source ./utils.sh
 
-# who needs scalability?
-command_validation="^(GET \w+|SET \w+ '.*')$"
-
 while true; do
     echo "Issue a command [GET, SET] (type 'exit' to quit):"
     read cmd
@@ -33,10 +30,7 @@ while true; do
         break
     fi
 
-    # NEEDS WORK
-    if echo "$cmd" | grep -qvE "$command_validation" ; then
-        client_respond "Command '$cmd' is not a valid command"
-    fi
+    validate_command "$cmd"
     echo "$cmd" | nc "$HOST" "$PORT"
 done
 

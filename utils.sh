@@ -1,6 +1,13 @@
 #!/usr/bin/env bash 
 
-client_respond() {
-   text="$1"
-   echo "$1"
+validate_command() {
+    cmd="$1"
+    # who needs scalability?
+    command_validation="^(GET \w+|SET \w+ '.*')$"
+
+    # NEEDS WORK
+    if echo "$cmd" | grep -qvE "$command_validation" ; then
+        echo "Command '$cmd' is not a valid command"
+    fi
+
 }
