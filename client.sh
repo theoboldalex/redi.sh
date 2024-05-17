@@ -23,7 +23,9 @@ PORT=$2
 
 source ./utils.sh
 
-# Consider what we do when multiple clients connected to server
+# who needs scalability?
+command_validation="^(GET \w+|SET \w+ '.*')$"
+
 while true; do
     echo "Issue a command [GET, SET] (type 'exit' to quit):"
     read cmd
@@ -32,7 +34,7 @@ while true; do
     fi
 
     # NEEDS WORK
-    if echo "$cmd" | grep -qvE "^(GET|SET)" ; then
+    if echo "$cmd" | grep -qvE "$command_validation" ; then
         client_respond "Command '$cmd' is not a valid command"
     fi
     echo "$cmd" | nc "$HOST" "$PORT"
