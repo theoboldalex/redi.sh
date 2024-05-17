@@ -30,8 +30,9 @@ while true; do
         break
     fi
 
-    validate_command "$cmd"
-    echo "$cmd" | nc "$HOST" "$PORT"
+    if validate_command "$cmd"; then
+        echo "$cmd" | nc "$HOST" "$PORT"
+    fi
 done
 
 

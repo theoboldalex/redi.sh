@@ -27,7 +27,7 @@ source ./utils.sh
 
 # TODO: check port is not blocked or currently in use
 nc -lvk "$PORT" | while IFS= read -r cmd; do
-    validate_command "$cmd"
-
-    echo "Received input: $cmd"
+    if validate_command "$cmd"; then
+        echo "Received input: $cmd"
+    fi
 done
