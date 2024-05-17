@@ -2,11 +2,9 @@
 
 # this is the storage for all key value pairs. Pretty ain't it?
 HASH_MAP=()
+PORT=$1
 
-# usage options
-# running server requires args
-# $1 = port to listen on
-if [ -z "$1" ]; then
+if [ -z "$PORT" ]; then
 cat << EOF
     USAGE: ./server.sh <port>;
 
@@ -25,10 +23,8 @@ EOF
     exit 1
 fi
 
-PORT=$1
-
 # TODO: check port is not blocked or currently in use
-nc -lvk "$PORT" | while read cmd; do
+nc -lvk "$PORT" | while IFS= read -r cmd; do
     # NEEDS WORK!
     if echo "$cmd" | grep -qvE "^(GET|SET)" ; then
         echo "Command $cmd is not a valid command"
