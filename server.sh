@@ -3,6 +3,17 @@
 # this is the storage for all key value pairs. Pretty ain't it?
 HASH_MAP=()
 PORT=$1
+DELIMITER="->"
+
+store_key_value_pair() {
+    local kvp=$(echo "$1" | sed 's/^SET //')
+    # local key=$(echo "$kvp" | sed -r 's/(\w*) .*$/\1/')
+    # local value=$(echo "$kvp" | sed -r 's/\w* //')
+    local key="${kvp%% *}"
+    local value="${kvp#* }"
+    
+    HASH_MAP+=("$key$DELIMITER$value")
+}
 
 if [ -z "$PORT" ]; then
     cat ./usage/server.txt
@@ -25,7 +36,9 @@ while true; do
                 log "$cmd"
             else
                 # Set value for given key
+                store_key_value_pair "$cmd"
                 log "$cmd"
+                echo "DEBUG::${HASH_MAP[@]}"
             fi
         fi
     done > $N_PIPE)
