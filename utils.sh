@@ -9,5 +9,4 @@ validate_command() {
     if echo "$cmd" | grep -qvE "$command_validation" ; then
         echo "Command '$cmd' is not a valid command"
     fi
-
 }
