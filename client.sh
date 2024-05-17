@@ -2,9 +2,10 @@
 
 if [ -z "$1" ]; then
 cat << EOF
-    USAGE: ./client.sh <port>;
+    USAGE: ./client.sh <host> <port>;
 
     OPTIONS:
+      <host>;    Specify the host to connect to.
       <port>;    Specify the port number (must be an integer between 1024 and 65535)
 
     EXAMPLES:
@@ -20,6 +21,14 @@ fi
 HOST=$1
 PORT=$2
 
-nc -v "$HOST" "$PORT"
+# Consider what we do when multiple clients connected to server
+while true; do
+    echo "Issue a command [GET, SET] (type 'exit' to quit):"
+    read cmd
+    if [ "$cmd" == "exit" ]; then
+        break
+    fi
+    echo "$cmd" | nc "$HOST" "$PORT"
+done
 
 

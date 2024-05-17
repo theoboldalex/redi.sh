@@ -29,4 +29,4 @@ PORT=$1
 
 # TODO: check port is not blocked or currently in use
 # start the server listening on the selected port
-nc -lvk "$PORT"
+echo 'test' | nc -lvk "$PORT"
