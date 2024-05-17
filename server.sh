@@ -8,14 +8,14 @@ HASH_MAP=()
 # $1 = port to listen on
 if [ -z "$1" ]; then
 cat << EOF
-    USAGE: ./script.sh <port>;
+    USAGE: ./server.sh <port>;
 
     OPTIONS:
       <port>;    Specify the port number (must be an integer between 1024 and 65535)
 
     EXAMPLES:
-      ./script.sh 8080   Starts the service on port 8080
-      ./script.sh 443    Starts the service on port 443 (typically used for HTTPS)
+      ./server.sh 8080   Starts the service on port 8080
+      ./server.sh 443    Starts the service on port 443 (typically used for HTTPS)
 
     NOTES:
       - Ensure the port number is not already in use.
