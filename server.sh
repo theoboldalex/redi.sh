@@ -1,6 +1,6 @@
 #!/usr/bin/env bash 
 
-# this is the storage for all key value pairs
+# this is the storage for all key value pairs. Pretty ain't it?
 HASH_MAP=()
 
 # usage options
