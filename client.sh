@@ -21,13 +21,22 @@ fi
 HOST=$1
 PORT=$2
 
+client_respond() {
+   text="$1"
+   echo "$1"
+}
+
 # Consider what we do when multiple clients connected to server
 while true; do
     echo "Issue a command [GET, SET] (type 'exit' to quit):"
     read cmd
-    # TODO: How are we going to handle input validation and invalid commands?
     if [ "$cmd" == "exit" ]; then
         break
+    fi
+
+    # NEEDS WORK
+    if echo "$cmd" | grep -qvE "^(GET|SET)" ; then
+        client_respond "Command '$cmd' is not a valid command"
     fi
     echo "$cmd" | nc "$HOST" "$PORT"
 done
