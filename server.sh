@@ -1,0 +1,32 @@
+#!/usr/bin/env bash 
+
+# this is the storage for all key value pairs
+HASH_MAP=()
+
+# usage options
+# running server requires args
+# $1 = port to listen on
+if [ -z "$1" ]; then
+cat << EOF
+    USAGE: ./script.sh <port>;
+
+    OPTIONS:
+      <port>;    Specify the port number (must be an integer between 1024 and 65535)
+
+    EXAMPLES:
+      ./script.sh 8080   Starts the service on port 8080
+      ./script.sh 443    Starts the service on port 443 (typically used for HTTPS)
+
+    NOTES:
+      - Ensure the port number is not already in use.
+      - Ports below 1024 require superuser privileges.
+      - Valid port numbers range from 1024 to 65535.
+EOF
+    exit 1
+fi
+
+PORT=$1
+
+# TODO: check port is not blocked or currently in use
+# start the server listening on the selected port
+nc -lvk "$PORT"
