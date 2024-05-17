@@ -21,10 +21,7 @@ fi
 HOST=$1
 PORT=$2
 
-client_respond() {
-   text="$1"
-   echo "$1"
-}
+source ./utils.sh
 
 # Consider what we do when multiple clients connected to server
 while true; do

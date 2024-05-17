@@ -23,6 +23,8 @@ EOF
     exit 1
 fi
 
+source ./utils.sh
+
 # TODO: check port is not blocked or currently in use
 nc -lvk "$PORT" | while IFS= read -r cmd; do
     echo "Received input: $cmd"
