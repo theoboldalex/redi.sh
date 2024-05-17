@@ -13,3 +13,9 @@ validate_command() {
 
     return 0
 }
+
+log() {
+    local input="$1"
+
+    echo "Received: $input"
+}

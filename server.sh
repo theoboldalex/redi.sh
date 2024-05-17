@@ -21,9 +21,11 @@ while true; do
     nc -lvk "$PORT" > >(while read -r cmd; do
         if validate_command "$cmd"; then
             if echo "$cmd" | grep -qE "^GET"; then
-                echo "Received GET: $cmd"
+                # Get data for given key if available
+                log "$cmd"
             else
-                echo "Received SET: $cmd"
+                # Set value for given key
+                log "$cmd"
             fi
         fi
     done > $N_PIPE)
