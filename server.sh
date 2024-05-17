@@ -20,7 +20,11 @@ while true; do
     cat $N_PIPE |
     nc -lvk "$PORT" > >(while read -r cmd; do
         if validate_command "$cmd"; then
-            echo "Received input: $cmd"
+            if echo "$cmd" | grep -qE "^GET"; then
+                echo "Received GET: $cmd"
+            else
+                echo "Received SET: $cmd"
+            fi
         fi
     done > $N_PIPE)
 done
