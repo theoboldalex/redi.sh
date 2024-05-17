@@ -28,5 +28,11 @@ fi
 PORT=$1
 
 # TODO: check port is not blocked or currently in use
-# start the server listening on the selected port
-echo 'test' | nc -lvk "$PORT"
+nc -lvk "$PORT" | while read cmd; do
+    # NEEDS WORK!
+    if echo "$cmd" | grep -qvE "^(GET|SET)" ; then
+        echo "Command $cmd is not a valid command"
+    fi
+
+    echo "Received input: $cmd"
+done

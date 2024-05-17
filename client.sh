@@ -25,6 +25,7 @@ PORT=$2
 while true; do
     echo "Issue a command [GET, SET] (type 'exit' to quit):"
     read cmd
+    # TODO: How are we going to handle input validation and invalid commands?
     if [ "$cmd" == "exit" ]; then
         break
     fi
