@@ -19,3 +19,12 @@ log() {
 
     echo "Received: $input"
 }
+
+format_get_repsonse() {
+    local response="$1"
+    if jq -e . >/dev/null 2>&1 <<<"$response"; then
+        echo $response | jq .
+    else
+        echo $response
+    fi
+}
