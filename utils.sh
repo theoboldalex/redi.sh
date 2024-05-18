@@ -28,3 +28,13 @@ format_get_repsonse() {
         echo $response
     fi
 }
+
+setup_temp_fs() {
+    if [[ `uname` == 'Darwin' ]]; then
+        # macos tmpfs
+        echo "mac"
+    else
+        # linux ramfs
+        echo "linux"
+    fi
+}

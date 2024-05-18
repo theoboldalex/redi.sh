@@ -1,13 +1,5 @@
 #!/usr/bin/env bash 
 
-if [[ `uname` == 'Darwin' ]]; then
-    # macos tmpfs
-    echo "mac"
-else
-    # linux ramfs
-    echo "linux"
-fi
-
 # this is the storage for all key value pairs. Pretty ain't it?
 HASH_MAP=()
 PORT=$1
@@ -27,6 +19,7 @@ if [ -z "$PORT" ]; then
 fi
 
 source ./utils.sh
+setup_temp_fs
 
 N_PIPE=/tmp/redish_pipe
 if [[ ! -p $N_PIPE ]]; then
