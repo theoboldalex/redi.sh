@@ -1,5 +1,13 @@
 #!/usr/bin/env bash 
 
+if [[ `uname` == 'Darwin' ]]; then
+    # macos tmpfs
+    echo "mac"
+else
+    # linux ramfs
+    echo "linux"
+fi
+
 # this is the storage for all key value pairs. Pretty ain't it?
 HASH_MAP=()
 PORT=$1
