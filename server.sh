@@ -1,6 +1,5 @@
 #!/usr/bin/env bash 
 
-# this is the storage for all key value pairs. Pretty ain't it?
 PORT=$1
 MOUNT_DIR="/private/tmp/redish"
 
